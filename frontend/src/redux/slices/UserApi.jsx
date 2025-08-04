@@ -14,6 +14,7 @@ export const userApi = createApi({
     },
     credentials: "include",
   }),
+  
   endpoints: (builder) => ({
     userRegistration: builder.mutation({
       query: (userData) => ({

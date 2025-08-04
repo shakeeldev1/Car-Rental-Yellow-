@@ -47,7 +47,7 @@ const Navbar = () => {
             <Link
               key={item}
               to={`/${item.toLowerCase().replace(/ /g, "-")}`}
-              className="hover:text-[#1572D3] transition"
+              className="hover:text-[#FFEE02] transition"
             >
               {item}
             </Link>
