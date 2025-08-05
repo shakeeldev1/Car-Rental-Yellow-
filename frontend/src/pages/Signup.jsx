@@ -121,12 +121,7 @@ export default function RegisterPage() {
                 Remember me
               </label>
             </div>
-            <button
-              type="button"
-              className="text-[#b6aa03] underline cursor-pointer font-medium text-sm hover:underline"
-            >
-              Forgot password?
-            </button>
+        
           </div>
 
           <button
@@ -138,7 +133,12 @@ export default function RegisterPage() {
           >
             {isLoading ? "Loading..." : "Create Account"}
           </button>
-
+                <button
+              type="button"
+              className="text-[#b6aa03] underline cursor-pointer font-medium text-sm hover:underline"
+            >
+              
+            </button>
           <div className="flex items-center my-6">
             <div className="flex-grow h-px bg-gray-300"></div>
             <span className="px-3 text-gray-500">OR</span>

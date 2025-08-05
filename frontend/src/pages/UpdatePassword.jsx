@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { useUpdatePasswordMutation } from "../redux/slices/UserApi";
 import { useNavigate } from "react-router-dom";
@@ -80,7 +80,7 @@ const UpdatePassword = () => {
                 name={field}
                 value={formData[field]}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#B6AA03]"
                 required
               />
               <span
@@ -96,7 +96,7 @@ const UpdatePassword = () => {
           <button
             type="submit"
             className={`w-full py-2 text-white rounded-lg transition duration-300 cursor-pointer ${
-              isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+              isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-[#B6AA03] hover:bg-[#b6aa03d1]"
             }`}
             disabled={isLoading}
           >

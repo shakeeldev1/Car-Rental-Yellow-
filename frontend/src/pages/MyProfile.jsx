@@ -79,7 +79,7 @@ const MyProfile = () => {
     <div className="flex justify-center my-8">
       <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-6 flex flex-col items-center text-center">
         <div
-          className="w-24 h-24 rounded-full border-4 border-blue-500 flex items-center justify-center bg-gray-100 text-2xl font-bold text-blue-600 cursor-pointer relative overflow-hidden group"
+          className="w-24 h-24 rounded-full border-4 border-[#B6AA03] flex items-center justify-center bg-gray-100 text-2xl font-bold text-[#B6AA03] cursor-pointer relative overflow-hidden group"
           onClick={() => document.getElementById("imageInput").click()}
         >
           {selectedImage ? (
@@ -109,7 +109,7 @@ const MyProfile = () => {
           className="hidden"
         />
 
-        <p className="text-2xl font-bold mt-4 text-blue-600">
+        <p className="text-2xl font-bold mt-4 text-[#B6AA03]">
           Hello, {profile.name}
         </p>
         <p className="text-lg font-medium text-gray-700">{profile.email}</p>
@@ -118,7 +118,7 @@ const MyProfile = () => {
         <div className="w-full flex justify-between mt-6 gap-10">
           <Link
             to="/update-password"
-            className="w-1/2 py-2 rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-500 transition-all duration-300 shadow-md"
+            className="w-1/2 py-2 rounded-md text-white font-medium bg-gradient-to-r from-[#B6AA03] to-[#d2c503] hover:from-[#d2c503] hover:to-[#B6AA03] transition-all duration-300 shadow-md"
           >
             Update Password
           </Link>
