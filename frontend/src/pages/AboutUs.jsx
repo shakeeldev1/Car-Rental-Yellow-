@@ -1,17 +1,17 @@
-// import Intro from "../components/AboutUs/Intro";
-import Services from "../components/AboutUs/Services";
-import Accordian from "../components/AboutUs/Accordian";
 import Header from "../components/Header";
 import TrustedCabService from "../components/home/TrustedCabService";
+import HowWorks from "../components/AboutUs/HowWorks";
+import Drivers from "../components/AboutUs/Drivers";
+import GetApp from "../components/AboutUs/GetApp";
 
 const About1 = () => {
   return (
     <>
       <Header name="About Us" title="About" />
       <TrustedCabService />
-      {/* <Intro /> */}
-      <Services />
-      <Accordian />
+      <HowWorks />
+      <Drivers />
+      <GetApp />
     </>
   );
 };
