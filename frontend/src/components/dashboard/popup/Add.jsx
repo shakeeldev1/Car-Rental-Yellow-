@@ -104,7 +104,7 @@ const AddProduct = ({ isOpen, onClose }) => {
             {[
               { label: "Service Name", name: "serviceName", type: "text" },
               { label: "Category", name: "serviceCategory", type: "text" },
-              { label: "Price", name: "price", type: "number" },
+              { label: "Price(KM)", name: "price", type: "number" },
               { label: "Passengers", name: "passengers", type: "number" },
               { label: "Doors", name: "doors", type: "number" },
             ].map((field, index) => (

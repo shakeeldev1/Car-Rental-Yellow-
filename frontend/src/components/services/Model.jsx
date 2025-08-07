@@ -28,10 +28,8 @@ const Modal = () => {
     e.preventDefault();
     const id = service._id;
   
-    // Combine date and time into a single ISO string in the user's local time zone
     const localDateTime = new Date(`${user.date}T${user.time}`);
   
-    // Convert the local date and time to UTC
     const utcDateTime = new Date(
       localDateTime.getTime() - localDateTime.getTimezoneOffset()
     ).toISOString();
@@ -39,7 +37,7 @@ const Modal = () => {
     const orderData = {
       data: {
         ...user,
-        pickupDateTime: utcDateTime, // Send the UTC date and time
+        pickupDateTime: utcDateTime,
       },
       price: service.price,
     };
@@ -161,7 +159,7 @@ const Modal = () => {
               type="submit"
               disabled={isLoading}
               aria-disabled={isLoading}
-              className={`hover:shadow-md w-full rounded-md bg-blue-600 py-3 px-8 text-center text-base font-semibold text-white outline-none transition duration-200 hover:bg-blue-700 ${
+              className={`hover:shadow-md w-full rounded-md bg-[#C8BF40] py-3 px-8 text-center text-base font-semibold text-white outline-none transition duration-200 hover:bg-[#c8bf40da] ${
                 isLoading ? "cursor-not-allowed opacity-50" : "cursor-pointer"
               }`}
             >

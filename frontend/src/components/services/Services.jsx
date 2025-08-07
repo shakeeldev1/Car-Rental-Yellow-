@@ -98,7 +98,7 @@ const OurServices = () => {
                 <div className="mt-4 flex items-center justify-between">
                   <div>
                     <p className="text-gray-600 text-sm">Price</p>
-                    <h3 className="text-2xl font-semibold text-gray-900">${service.price}/day</h3>
+                    <h3 className="text-2xl font-semibold text-gray-900">${service.price}/KM</h3>
                   </div>
                   <Link
                     to={`/booking/${service._id}`}

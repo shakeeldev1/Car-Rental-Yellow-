@@ -100,7 +100,7 @@ const ProductsTable = () => {
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase">Name</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase">Category</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase">Price</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase">Price(KM)</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase">Passengers</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase">Actions</th>
                   </tr>
