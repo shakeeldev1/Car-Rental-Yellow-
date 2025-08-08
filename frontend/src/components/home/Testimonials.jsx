@@ -69,13 +69,13 @@ const Testimonials = () => {
       />
 
       {(aboutTestimonials || homeTestimonials) && (
-        <div className="w-full max-w-5xl mx-auto bg-[linear-gradient(45deg,#0F00AA,#060044)] p-8 md:p-10 rounded-xl flex flex-col md:flex-row gap-8 items-center">
+        <div className="w-full max-w-5xl mx-auto shadow-md bg-gray-100 p-8 md:p-10 rounded-xl flex flex-col md:flex-row gap-8 items-center">
           {/* Heading */}
           <div
             className="w-full md:w-1/3 text-center md:text-left"
             data-aos="fade-down"
           >
-            <h1 className="text-3xl font-bold text-white leading-snug">
+            <h1 className="text-3xl my-auto font-bold text-black leading-snug">
               Our <span className="text-[#FFF200]">Clients,</span> In Their Own
               Words
             </h1>
@@ -101,12 +101,12 @@ const Testimonials = () => {
                   >
                     <div
                       className={`${
-                        homeTestimonials ? "text-white" : "text-black bg-white"
+                        homeTestimonials ? "text-black bg-white" : "text-black bg-white"
                       } w-full ${
                         homeTestimonials ? "" : "sm:w-9/12"
-                      } mx-auto rounded-lg shadow-md p-6 space-y-4`}
+                      } mx-auto rounded-lg shadow-md p-6 space-y-4 min-h-[300px]]`}
                     >
-                      <div className="flex justify-start gap-6 items-center">
+                      <div className="flex justify-start gap-6 items-cente">
                         <h1 className="text-md sm:text-xl font-bold">
                           {review.rating?.toFixed(1) || "5.0"}
                         </h1>
@@ -115,8 +115,8 @@ const Testimonials = () => {
                         </div>
                       </div>
 
-                      <div className="">
-                        <div className="flex justify-start gap-5 items-center">
+                      <div className="pb-5">
+                        <div className="flex justify-start gap-5 items-center mb-2">
                           <img
                             src={
                               review.user?.profilePic ||
@@ -148,11 +148,11 @@ const Testimonials = () => {
               </div>
             )}
 
-            <div className="flex justify-center sm:justify-end p-1">
+            <div className="flex mt-3 justify-center sm:justify-end p-1">
               <button
                 data-aos="zoom-out"
                 onClick={handleAddReview}
-                className="px-2 py-2 text-xs sm:px-3 sm:py-2 cursor-pointer text-black hover:text-white sm:text-lg font-semibold rounded text-md shadow-lg bg-[linear-gradient(to_right,#FFF200,#e1c700,#060044)] bg-[length:200%_100%] bg-left hover:bg-right transition-all duration-700 hover:scale-105"
+                className="px-2 py-2 text-xs sm:px-3 sm:py-2 cursor-pointer text-black hover:text-white sm:text-lg font-semibold rounded-md text-md shadow-lg bg-[#FFEE02] hover:bg-[#C8BF40] transition-all duration-700"
                 title="Click to add your review"
               >
                 Add your reviews
