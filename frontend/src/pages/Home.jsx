@@ -14,10 +14,10 @@ const Home = () => {
       <Header />
       <TrustedCabService />
       <Services />
+      <PopularServices />
       <Faqs />
       {/* <Working /> */}
       {/* <WhyUs /> */}
-      {/* <PopularServices /> */}
       {/* <Download /> */}
     </div>
   );

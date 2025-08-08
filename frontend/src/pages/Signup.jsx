@@ -11,6 +11,7 @@ export default function RegisterPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     password: "",
     rememberMe: false,
   });
@@ -37,7 +38,7 @@ export default function RegisterPage() {
       toast.success(response.data?.message || "Registration successful!", {
         position: "top-center",
       });
-      navigate('/user-verification', { state: { user:formData } });
+      navigate("/user-verification", { state: { user: formData } });
     }
   };
 
@@ -54,7 +55,10 @@ export default function RegisterPage() {
         </div>
 
         {/* Right Side */}
-        <form className="w-full md:w-1/2 flex flex-col p-8" onSubmit={handleRegister}>
+        <form
+          className="w-full md:w-1/2 flex flex-col p-8"
+          onSubmit={handleRegister}
+        >
           <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">
             Create an Account
           </h2>
@@ -84,6 +88,21 @@ export default function RegisterPage() {
               className="w-full border border-gray-300 p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03c1]"
               placeholder="Enter your email"
               value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 text-md font-medium">
+              Phone Number
+            </label>
+            <input
+              type="number"
+              name="phone"
+              className="w-full border border-gray-300 p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03c1]"
+              placeholder="Enter your mobile number"
+              value={formData.phone}
               onChange={handleChange}
               required
             />
@@ -121,7 +140,6 @@ export default function RegisterPage() {
                 Remember me
               </label>
             </div>
-        
           </div>
 
           <button
@@ -133,12 +151,10 @@ export default function RegisterPage() {
           >
             {isLoading ? "Loading..." : "Create Account"}
           </button>
-                <button
-              type="button"
-              className="text-[#b6aa03] underline cursor-pointer font-medium text-sm hover:underline"
-            >
-              
-            </button>
+          <button
+            type="button"
+            className="text-[#b6aa03] underline cursor-pointer font-medium text-sm hover:underline"
+          ></button>
           <div className="flex items-center my-6">
             <div className="flex-grow h-px bg-gray-300"></div>
             <span className="px-3 text-gray-500">OR</span>

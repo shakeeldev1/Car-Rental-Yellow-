@@ -3,12 +3,12 @@ import Button from "../Button";
 
 const Header = () => {
   return (
-    <div className="relative w-full max-h-screen">
+    <div className="relative w-full max-h-[550px]">
       {/* Background Image */}
       <img
         src={header}
         alt="Header poster"
-        className="w-full min-h-[60vh] object-cover"
+        className="w-full object-cover"
       />
 
       {/* Text Content */}
