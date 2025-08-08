@@ -7,14 +7,13 @@ import "swiper/css/pagination";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { data, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useGetReviewsQuery } from "../../redux/slices/ReviewApi";
 import ReviewForm from "./ReviewForm";
 
 const Testimonials = () => {
   const [FormReview, setFormReview] = useState(false);
   const { data: reviewsResponse, isLoading, isError } = useGetReviewsQuery();
-console.log("review",reviewsResponse);
   const reviews = reviewsResponse?.reviews || [];
   const highRatedReviews = reviews.filter((review) => review.rating >= 4);
 
