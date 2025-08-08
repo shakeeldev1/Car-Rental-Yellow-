@@ -10,6 +10,7 @@ import userRoutes from "./routes/useRoutes.js";
 import serviceRoutes from "./routes/serviceRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import blogRoutes from './routes/blogRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -41,6 +42,7 @@ app.use("/api/v1", userRoutes);
 app.use("/api/v1", serviceRoutes);
 app.use("/api/v1", orderRoutes);
 app.use("/api/v1", blogRoutes);
+app.use("/api/v1", reviewRoutes);
 
 // Start the server
 app.listen(port, () => {

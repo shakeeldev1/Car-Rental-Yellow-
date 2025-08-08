@@ -7,6 +7,7 @@ import Download from "../components/home/Download";
 import TrustedCabService from "../components/home/TrustedCabService";
 import Services from "../components/home/Services";
 import Faqs from "../components/home/Faqs";
+import Testimonials from "../components/home/Testimonials";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Header />
       <TrustedCabService />
       <Services />
+      <Testimonials />
       <PopularServices />
       <Faqs />
       {/* <Working /> */}
