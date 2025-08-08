@@ -29,7 +29,7 @@ const Faqs = () => {
   };
 
   return (
-    <div className="container flex gap-20 mx-auto py-10 items-center">
+    <div className="container flex gap-20 mx-auto py-10 mt-5 items-center">
       {/* FAQ Section */}
       <div className="w-[100%] md:w-[50%] mx-5">
         <p className="mb-2">Have you any question?</p>

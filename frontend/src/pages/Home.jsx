@@ -8,12 +8,14 @@ import TrustedCabService from "../components/home/TrustedCabService";
 import Services from "../components/home/Services";
 import Faqs from "../components/home/Faqs";
 import Testimonials from "../components/home/Testimonials";
+import CarRentalStats from "../components/home/CarRentalStats";
 
 const Home = () => {
   return (
     <div>
       <Header />
       <TrustedCabService />
+      <CarRentalStats />
       <Services />
       <Testimonials />
       <PopularServices />
