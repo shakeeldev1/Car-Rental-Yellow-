@@ -113,6 +113,7 @@ const MyProfile = () => {
           Hello, {profile.name}
         </p>
         <p className="text-lg font-medium text-gray-700">{profile.email}</p>
+        <p className="text-lg font-medium text-gray-700">{profile.phone}</p>
         <p className="text-sm text-gray-500">Role: {profile.role}</p>
 
         <div className="w-full flex justify-between mt-6 gap-10">

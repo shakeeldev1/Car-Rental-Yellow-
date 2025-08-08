@@ -42,7 +42,7 @@ export default function EmailOTPForm() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8">
       {successMessage && (
-        <div className="bg-blue-700 text-white p-4 mb-4 rounded-md shadow-lg text-center text-lg">
+        <div className="bg-[#B6AA03] text-white p-4 mb-4 rounded-md shadow-lg text-center text-lg">
           {successMessage}
         </div>
       )}
@@ -67,7 +67,7 @@ export default function EmailOTPForm() {
           </div>
           <button
             onClick={handleEmailSubmit}
-            className="bg-blue-700 text-white cursor-pointer px-5 py-3 rounded-md w-full text-lg disabled:opacity-50"
+            className="bg-[#B6AA03] text-white cursor-pointer px-5 py-3 rounded-md w-full text-lg disabled:opacity-50"
             disabled={!email || !isChecked}
           >
             Submit
@@ -91,7 +91,7 @@ export default function EmailOTPForm() {
           {isOtpComplete && (
             <button
               onClick={handleOtpSubmit}
-              className="bg-blue-700 cursor-pointer text-white px-5 py-3 mt-6 rounded-md w-full text-lg"
+              className="bg-[#B6AA03] cursor-pointer text-white px-5 py-3 mt-6 rounded-md w-full text-lg"
             >
               Verify OTP
             </button>

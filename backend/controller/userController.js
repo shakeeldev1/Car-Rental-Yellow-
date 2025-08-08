@@ -3,12 +3,11 @@ import sendMail from "../utils/SendMail.js";
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-
+    const { name, email,phone, password } = req.body;
     let user = await User.findOne({ email });
     if (user) return res.status(400).json({ message: "User already exists" });
 
-    user = new User({ name, email, password, status: "unverified" });
+    user = new User({ name, email,phone, password, status: "unverified" });
 
     const otp = await user.generateOTP();
 
@@ -31,6 +30,7 @@ export const register = async (req, res) => {
       .status(201)
       .json({ message: "OTP sent to email. Verify your account." });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };

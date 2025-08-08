@@ -1,20 +1,28 @@
 import dotenv from "dotenv";
-import sgMail from "@sendgrid/mail";
-
 dotenv.config();
-sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+import nodemailer from "nodemailer";
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "bmxadventure8@gmail.com",
+    pass: "yoie uzhf crai ccks",
+  },
+  secure: true,
+  timeout: 10000,
+});
 
 const SendMail = async (email, subject, text) => {
   try {
-    const msg = {
-      to: email,
-      from: "aqibmalik1586@gmail.com",
+    const mailOptions = {
+      from: "bmxadventure8@gmail.com", 
+      to: email, 
       subject: subject,
-      html: text, 
+      html: text,
     };
-
-    await sgMail.send(msg);
+    await transporter.sendMail(mailOptions);
   } catch (error) {
+    console.error("❌ Email sending failed:", error);
     throw new Error("Failed to send mail");
   }
 };
