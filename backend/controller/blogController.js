@@ -2,18 +2,18 @@ import Blog from "../models/Blogs.js";
 
 export const addBlog = async (req, res) => {
   try {
-    const { title, description, postedDate } = req.body;
+    const { title, author, description } = req.body;
     const image = req.file?.path;
 
-    if (!title || !description || !postedDate || !image) {
+    if (!title || !description || !author || !image) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
     const newBlog = new Blog({
       title,
       description,
-      postedDate,
-      image,
+      author,
+      blogImage: image,
     });
 
     await newBlog.save();
@@ -69,7 +69,6 @@ export const updateBlog = async (req, res) => {
   try {
     const { blogId } = req.params;
     const blogData = { ...req.body };
-
     if (!blogId) {
       return res.status(400).json({ message: "Blog ID is required" });
     }

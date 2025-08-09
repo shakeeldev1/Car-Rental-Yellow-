@@ -1,10 +1,9 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import blogs from "./blogData";
-import { FaArrowRight } from "react-icons/fa6";
 
 function BlogDetails() {
   const { id } = useParams();
+  console.log("this is blog id : ",id)
   const blog = blogs.find((b) => b.id === parseInt(id));
 
   if (!blog) return <h2>Blog not found</h2>;

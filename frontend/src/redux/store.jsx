@@ -4,6 +4,7 @@ import userReducer from "./slices/UserSlice";
 import { serviceApi } from "./slices/ServiceApi";
 import { OrderApi } from "./slices/OrderSlices";
 import { reviewApi } from "./slices/ReviewApi";
+import { BlogApi } from "./slices/BlogSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,9 +12,10 @@ export const store = configureStore({
     user: userReducer,
     [serviceApi.reducerPath]: serviceApi.reducer,
     [OrderApi.reducerPath]:OrderApi.reducer,
-    [reviewApi.reducerPath]:reviewApi.reducer
+    [reviewApi.reducerPath]:reviewApi.reducer,
+    [BlogApi.reducerPath]:BlogApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(userApi.middleware, serviceApi.middleware,OrderApi.middleware,reviewApi.middleware),
+    getDefaultMiddleware().concat(userApi.middleware, serviceApi.middleware,OrderApi.middleware,reviewApi.middleware,BlogApi.middleware),
   devTools: process.env.NODE_ENV !== "production",
 });

@@ -1,4 +1,3 @@
-import React from "react";
 import Heading from "../components/blogs/Heading";
 import BlogCards from "../components/blogs/BlogCards";
 import BlogLabel from "../components/blogs/BlogLabel";

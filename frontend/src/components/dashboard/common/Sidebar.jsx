@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { FaBlog } from "react-icons/fa";
 
 const SIDEBAR_ITEMS = [
   {
@@ -23,6 +24,7 @@ const SIDEBAR_ITEMS = [
   { name: "Users", icon: Users, color: "#EC4899", href: "/users" },
   { name: "Sales", icon: DollarSign, color: "#10B981", href: "/sales" },
   { name: "Orders", icon: ShoppingCart, color: "#F59E0B", href: "/orders" },
+  { name: "Blogs", icon: FaBlog, color: "#F59E0B", href: "/admin-blogs" },
 ];
 
 const Sidebar = () => {
