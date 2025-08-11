@@ -1,25 +1,27 @@
 import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa"; // Importing icons
+import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../../assets/footerContent/Frame.png";
+import { useGetAllBlogsQuery } from "../../redux/slices/BlogSlice";
 
-function BlogLabel() {
-  const categories = [
-    "All Categories",
-    "Tech",
-    "Bio",
-    "New",
-    "Science",
-    "Health",
-    "Travel",
-    "Education",
-    "Business",
-    "Sports",
-    "Finance",
-    "AI",
-  ];
+function BlogLabel({ selectedCategory, setSelectedCategory }) {
+  const { data } = useGetAllBlogsQuery();
+  const blogPosts = data?.blogs || [];
+  
+  const [isOpen, setIsOpen] = useState(false);
+  const [categories, setCategories] = useState(["All Categories"]);
 
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
-  const [isOpen, setIsOpen] = useState(false); // Toggle state for mobile menu
+  // Extract unique categories from blog posts
+  React.useEffect(() => {
+    if (blogPosts.length > 0) {
+      const uniqueCategories = ["All Categories"];
+      blogPosts.forEach(post => {
+        if (post.category && !uniqueCategories.includes(post.category)) {
+          uniqueCategories.push(post.category);
+        }
+      });
+      setCategories(uniqueCategories);
+    }
+  }, [blogPosts]);
 
   return (
     <>

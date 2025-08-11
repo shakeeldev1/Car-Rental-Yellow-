@@ -4,6 +4,7 @@ import {
   addBlog,
   deleteBlog,
   getAllBlogs,
+  getSingleBlog,
   likeBlog,
   likeComment,
   postComment,
@@ -23,10 +24,10 @@ router.put(
   upload.single("blogImage"),
   updateBlog
 );
-
+router.get("/get-single-blog/:id",getSingleBlog);
 // Comment Routes
 router.post("/add-comment/:blogId", auth, postComment);
 router.put("/blog/:blogId/like", auth, likeBlog);
-router.put("/comment/:commentId/like", auth, likeComment);
+router.put("/blogs/:blogId/comments/:commentId/like", auth, likeComment);
 
 export default router;

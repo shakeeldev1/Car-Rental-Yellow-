@@ -9,40 +9,53 @@ import {
   useGetSingleBlogQuery,
   useLikeBlogMutation,
   useLikeCommentMutation,
+  useGetAllBlogsQuery,
 } from "../../redux/slices/BlogSlice";
 
 function BlogDetails() {
   const { id } = useParams();
-  console.log("blog detail id ::", id);
-  const { data: blog, isLoading, error } = useGetSingleBlogQuery(id);
-  console.log(blog);
+  const { 
+    data: blog, 
+    isLoading: isBlogLoading, 
+    error: blogError,
+    refetch: refetchBlog 
+  } = useGetSingleBlogQuery(id);
+  
+  const { data: allBlogsData } = useGetAllBlogsQuery();
   const [addComment] = useAddCommentMutation();
-  const [likeBlog] = useLikeBlogMutation();
-  const [likeComment] = useLikeCommentMutation();
+  const [likeBlog, { isLoading: isLikeLoading }] = useLikeBlogMutation();
+  const [likeComment, { isLoading: isCommentLikeLoading }] = useLikeCommentMutation();
 
   const [newComment, setNewComment] = useState("");
-  const [likedBlog, setLikedBlog] = useState(false);
-  const [likedComments, setLikedComments] = useState({});
+  const [optimisticLikedBlog, setOptimisticLikedBlog] = useState(false);
+  const [optimisticLikedComments, setOptimisticLikedComments] = useState({});
 
+  // Sync with server data when it changes
   useEffect(() => {
     if (blog) {
-      setLikedBlog(blog.isLiked || false);
+      setOptimisticLikedBlog(blog.isLiked || false);
       const initialLikedComments = {};
-      blog.comments.forEach((comment) => {
+      blog.comments?.forEach((comment) => {
         initialLikedComments[comment._id] = comment.isLiked || false;
       });
-      setLikedComments(initialLikedComments);
+      setOptimisticLikedComments(initialLikedComments);
     }
   }, [blog]);
 
-  if (error) return <h2>Error loading blog</h2>;
-  if (!blog) return <h2>Blog not found</h2>;
-
   const handleLikeBlog = async () => {
+    const newLikedState = !optimisticLikedBlog;
     try {
+      // Optimistic update
+      setOptimisticLikedBlog(newLikedState);
+      
+      // Actual API call
       await likeBlog({ blogId: id }).unwrap();
-      setLikedBlog(!likedBlog);
+      
+      // Refresh data to ensure sync with server
+      await refetchBlog();
     } catch (error) {
+      // Revert on error
+      setOptimisticLikedBlog(!newLikedState);
       toast.error(error.data?.message || "Error liking blog!", {
         position: "top-center",
       });
@@ -50,13 +63,27 @@ function BlogDetails() {
   };
 
   const handleLikeComment = async (commentId) => {
+    const currentState = optimisticLikedComments[commentId] || false;
+    const newState = !currentState;
+    
     try {
-      await likeComment({ blogId: id, commentId }).unwrap();
-      setLikedComments((prev) => ({
+      // Optimistic update
+      setOptimisticLikedComments(prev => ({
         ...prev,
-        [commentId]: !prev[commentId],
+        [commentId]: newState
       }));
+      
+      // Actual API call
+      await likeComment({ blogId: id, commentId }).unwrap();
+      
+      // Refresh data
+      await refetchBlog();
     } catch (error) {
+      // Revert on error
+      setOptimisticLikedComments(prev => ({
+        ...prev,
+        [commentId]: currentState
+      }));
       toast.error(error.data?.message || "Error liking comment!", {
         position: "top-center",
       });
@@ -72,6 +99,7 @@ function BlogDetails() {
     try {
       await addComment({ blogId: id, commentText: newComment }).unwrap();
       setNewComment("");
+      await refetchBlog(); // Refresh to show new comment
     } catch (error) {
       toast.error(error.data?.message || "Error adding comment!", {
         position: "top-center",
@@ -79,114 +107,217 @@ function BlogDetails() {
     }
   };
 
+  const allBlogs = Array.isArray(allBlogsData) ? allBlogsData : allBlogsData?.blogs || [];
+  const popularBlogs = allBlogs.filter((popularBlog) => popularBlog._id !== id);
+
+  if (blogError) return <h2 className="text-red-500 text-center py-10">Error loading blog</h2>;
+  if (isBlogLoading) return <h2 className="text-center py-10">Loading...</h2>;
+  if (!blog) return <h2 className="text-center py-10">Blog not found</h2>;
+
   return (
-    <div className="bg-[#fff]">
-      <div className="mx-4 py-10">
-        <h2 className="text-lg sm:text-2xl text-start font-bold mx-2 sm:w-[60%]">
-          {blog?.title || "Title unavailable"}
-        </h2>
-        {blog?.blogImage ? (
-          <img
-            src={blog.blogImage}
-            alt="Cover image"
-            className="mt-4 w-full h-96 object-cover"
-          />
-        ) : (
-          <p>Image unavailable</p>
-        )}
+    <div className="bg-gray-50 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Main Content */}
+          <div className="w-full md:w-2/3">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+              {blog?.blogImage ? (
+                <img
+                  src={blog.blogImage}
+                  alt="Cover image"
+                  className="w-full h-96 object-cover"
+                />
+              ) : (
+                <div className="w-full h-96 bg-gray-200 flex items-center justify-center">
+                  <p className="text-gray-500">Image unavailable</p>
+                </div>
+              )}
 
-        <div className="max-w-8xl mx-auto py-10">
-          <div className="flex justify-between items-start flex-col sm:flex-row gap-4 sm:gap-0">
-            <h2 className="text-lg sm:text-[20px]">
-              {blog?.publishDate || "Date unavailable"}
-            </h2>
-            <h2 className="text-lg sm:text-[20px] md:mr-60 ">
-              Category: {blog?.category || "Uncategorized"}
-            </h2>
-          </div>
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <span className="text-sm text-gray-500">
+                    {blog?.publishDate || "Date unavailable"}
+                  </span>
+                  <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                    {blog?.category || "Uncategorized"}
+                  </span>
+                </div>
 
-          <div className="flex justify-between items-start mt-4 flex-col gap-4 sm:gap-4">
-            <h2 className="md:text-2xl text-[18px] font-bold text-black pb-1">
-              Description
-            </h2>
-            <p className="text-black text-lg sm:text-[18px]">
-              {blog?.description || "Description unavailable"}
-            </p>
-          </div>
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+                  {blog?.title || "Title unavailable"}
+                </h1>
 
-          <button
-            onClick={handleLikeBlog}
-            className="flex items-center cursor-pointer gap-2 text-black text-sm mt-4"
-          >
-            {likedBlog ? (
-              <FaHeart className="text-3xl text-red-500" />
-            ) : (
-              <CiHeart className="text-2xl" />
-            )}
-            Like blog ({blog?.likes?.length || 0})
-          </button>
+                <div className="prose max-w-none text-gray-700 mb-6">
+                  <p className="text-lg">
+                    {blog?.description || "Description unavailable"}
+                  </p>
+                </div>
 
-          <div className="mt-3 p-2">
-            <div className="w-full sm:w-6/12">
-              <textarea
-                className="w-full border rounded-md p-2 focus:outline-[#11110f] transition-all"
-                rows="4"
-                placeholder="Write a comment here..."
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-              />
-              <Button
-                text="Comment"
-                bgHover="black"
-                textHover="white"
-                cutHover="white"
-                onClick={handleAddComment}
-              />
+                <div className="flex items-center justify-between border-t border-b border-gray-200 py-4 mb-6">
+                  <button
+                    onClick={handleLikeBlog}
+                    disabled={isLikeLoading}
+                    className={`flex items-center gap-2 transition-colors ${
+                      optimisticLikedBlog ? "text-red-500" : "text-gray-700 hover:text-red-500"
+                    }`}
+                  >
+                    {optimisticLikedBlog ? (
+                      <FaHeart className="text-2xl text-red-500" />
+                    ) : (
+                      <CiHeart className="text-2xl" />
+                    )}
+                    <span>{blog?.likes?.length || 0} Likes</span>
+                  </button>
+                </div>
+
+                {/* Comments Section */}
+                <div className="mb-8">
+                  <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                    Comments
+                  </h3>
+                  <div className="mb-6">
+                    <textarea
+                      className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      rows="4"
+                      placeholder="Share your thoughts..."
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                    />
+                    <div className="mt-3">
+                      <Button
+                        text="Post Comment"
+                        bgHover="black"
+                        textHover="white"
+                        cutHover="white"
+                        onClick={handleAddComment}
+                      />
+                    </div>
+                  </div>
+
+                  {blog?.comments?.length > 0 ? (
+                    <div className="space-y-4">
+                      {blog.comments.map((comment) => (
+                        <div
+                          key={comment._id}
+                          className="bg-gray-50 p-4 rounded-lg border border-gray-200"
+                        >
+                          <div className="flex justify-between items-start mb-2">
+                            <span className="text-xs text-gray-500">
+                              {comment.date
+                                ? new Date(comment.date).toLocaleString()
+                                : "Date unavailable"}
+                            </span>
+                          </div>
+                          <p className="text-gray-700 mb-3">
+                            {comment.text || "Comment text unavailable"}
+                          </p>
+                          <button
+                            disabled={isCommentLikeLoading}
+                            className={`flex items-center gap-1 transition-colors ${
+                              optimisticLikedComments[comment._id] 
+                                ? "text-red-500" 
+                                : "text-gray-500 hover:text-red-500"
+                            }`}
+                            onClick={() => handleLikeComment(comment._id)}
+                          >
+                            {optimisticLikedComments[comment._id] ? (
+                              <FaHeart className="text-red-500" />
+                            ) : (
+                              <CiHeart />
+                            )}
+                            <span className="text-sm">
+                              {comment?.likes?.length || 0} Likes
+                            </span>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+                      <p className="text-blue-800">
+                        No comments yet. Be the first to share your thoughts!
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
-          <hr className="my-4" />
-
-          <div className="px-2 bg-[#ffee0274] mt-3 p-4 rounded-md">
-            <h3 className="text-lg font-bold">Comments:</h3>
-            {blog?.comments?.length > 0 ? (
-              <ul className="mt-2 space-y-2">
-                {blog.comments.map((comment) => (
-                  <li
-                    key={comment._id}
-                    className="p-4 rounded shadow-sm w-full bg-white"
-                  >
-                    <div className="flex justify-between w-full sm:w-4/12 mb-2">
-                      <p className="text-xs text-gray-500">
-                        {comment.date
-                          ? new Date(comment.date).toLocaleString()
-                          : "Date unavailable"}
-                      </p>
-                    </div>
-                    <p className="text-gray-700">
-                      {comment.text || "Comment text unavailable"}
+          {/* Sidebar */}
+          <div className="hidden md:block md:w-1/3">
+            <div className="sticky top-4">
+              <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
+                <div className="bg-gray-800 text-white px-4 py-3">
+                  <h3 className="font-semibold text-lg">Recent Blogs</h3>
+                </div>
+                <div className="p-4">
+                  {popularBlogs.length > 0 ? (
+                    <ul className="space-y-4">
+                      {popularBlogs.slice(0, 5).map((popularBlog) => (
+                        <li
+                          key={popularBlog._id}
+                          className="border-b border-gray-200 pb-4 last:border-0 last:pb-0"
+                        >
+                          <a
+                            href={`/blog/${popularBlog._id}`}
+                            className="block hover:bg-gray-50 p-2 rounded transition-colors"
+                          >
+                            {popularBlog.blogImage && (
+                              <img
+                                src={popularBlog.blogImage}
+                                alt={popularBlog.title}
+                                className="w-full h-32 object-cover rounded mb-2"
+                              />
+                            )}
+                            <h4 className="font-medium text-gray-900 line-clamp-2">
+                              {popularBlog.title}
+                            </h4>
+                            <div className="flex items-center justify-between mt-2">
+                              <span className="text-xs text-gray-500">
+                                {popularBlog.category}
+                              </span>
+                              <span className="text-xs text-gray-500">
+                                {popularBlog.likes?.length || 0} likes
+                              </span>
+                            </div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-gray-500 text-center py-4">
+                      No blogs found
                     </p>
-                    <div className="flex justify-start gap-2 items-center">
-                      <button
-                        className="flex items-center gap-1 text-black text-sm mt-1"
-                        onClick={() => handleLikeComment(comment._id)}
-                      >
-                        {likedComments[comment._id] ? (
-                          <FaHeart className="text-red-500" />
-                        ) : (
-                          <CiHeart className="mt-[6px]" />
-                        )}
-                        {comment?.likes?.length || 0} Likes
-                      </button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-gray-600">
-                No comments yet. Be the first to comment!
-              </p>
-            )}
+                  )}
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                <div className="bg-gray-800 text-white px-4 py-3">
+                  <h3 className="font-semibold text-lg">Categories</h3>
+                </div>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">
+                      Technology
+                    </span>
+                    <span className="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
+                      Travel
+                    </span>
+                    <span className="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">
+                      Food
+                    </span>
+                    <span className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">
+                      Lifestyle
+                    </span>
+                    <span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">
+                      Health
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

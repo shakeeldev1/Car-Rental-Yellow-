@@ -2,10 +2,10 @@ import Blog from "../models/Blogs.js";
 
 export const addBlog = async (req, res) => {
   try {
-    const { title, author, description } = req.body;
+    const { title,category, author, description } = req.body;
     const image = req.file?.path;
 
-    if (!title || !description || !author || !image) {
+    if (!title ||!category || !description || !author || !image) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -13,6 +13,7 @@ export const addBlog = async (req, res) => {
       title,
       description,
       author,
+      category,
       blogImage: image,
     });
 
@@ -62,6 +63,21 @@ export const deleteBlog = async (req, res) => {
     res
       .status(500)
       .json({ message: "Internal Server Error", error: error.message });
+  }
+};
+
+export const getSingleBlog = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const blog = await Blog.findById({_id:id});
+
+    if (!blog) {
+      return res.status(404).json({ message: "Blogul nu a fost găsit" });
+    }
+
+    res.status(200).json(blog);
+  } catch (error) {
+    res.status(500).json({ message: "Eroare server", error: error.message });
   }
 };
 
@@ -198,6 +214,7 @@ export const likeComment = async (req, res) => {
       return res.status(200).json({ message: "Comment liked", blog });
     }
   } catch (error) {
+    console.log(error)
     res
       .status(500)
       .json({ message: "Internal Server Error", error: error.message });

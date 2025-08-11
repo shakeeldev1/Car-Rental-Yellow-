@@ -78,7 +78,7 @@ export const BlogApi = createApi({
     // Like a comment
     likeComment: builder.mutation({
       query: ({ blogId, commentId }) => ({
-        url: `/blogs/${blogId}/comments/${commentId}/like`, // Updated URL
+        url: `/blogs/${blogId}/comments/${commentId}/like`,
         method: "PUT",
       }),
       invalidatesTags: ["Blog"],

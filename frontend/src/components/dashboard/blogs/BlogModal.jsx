@@ -10,7 +10,18 @@ const BlogModal = ({ isOpen, onClose }) => {
     blogImage: null,
     description: "",
     previewImage: null,
+    category: "Technology"
   });
+
+  const categories = [
+    "Technology",
+    "Travel",
+    "Food",
+    "Lifestyle",
+    "Health",
+    "Business",
+    "Education"
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,11 +47,14 @@ const BlogModal = ({ isOpen, onClose }) => {
       formDataToSend.append("author", formData.author);
       formDataToSend.append("description", formData.description);
       formDataToSend.append("blogImage", formData.blogImage);
+      formDataToSend.append("category", formData.category);
 
       const res = await addBlog(formDataToSend).unwrap();
 
       if (res?.blog) {
-        toast.success(res.message || "Blog created successfully", { position: "top-center" });
+        toast.success(res.message || "Blog created successfully", { 
+          position: "top-center" 
+        });
         onClose();
       }
     } catch (error) {
@@ -60,7 +74,7 @@ const BlogModal = ({ isOpen, onClose }) => {
             placeholder="Title"
             value={formData.title}
             onChange={handleChange}
-            className="w-full p-2 border mb-2"
+            className="w-full p-2 border mb-2 rounded"
             required
           />
           <input
@@ -68,15 +82,31 @@ const BlogModal = ({ isOpen, onClose }) => {
             placeholder="Author"
             value={formData.author}
             onChange={handleChange}
-            className="w-full p-2 border mb-2"
+            className="w-full p-2 border mb-2 rounded"
             required
           />
+          
+          {/* Category Select Field */}
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            className="w-full p-2 border mb-2 rounded bg-white"
+            required
+          >
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+
           <input
             name="blogImage"
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-            className="w-full p-2 border mb-2"
+            className="w-full p-2 border mb-2 rounded"
             aria-label="Upload blog image"
             required
           />
@@ -92,20 +122,21 @@ const BlogModal = ({ isOpen, onClose }) => {
             placeholder="Content"
             value={formData.description}
             onChange={handleChange}
-            className="w-full p-2 border mb-2"
+            className="w-full p-2 border mb-2 rounded"
+            rows="5"
             required
           />
           <div className="flex justify-end space-x-2">
             <button
               type="button"
-              className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer"
+              className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-red-600 transition"
               onClick={onClose}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer disabled:opacity-50"
+              className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600 transition disabled:opacity-50"
               disabled={isLoading}
             >
               {isLoading ? "Saving..." : "Save"}

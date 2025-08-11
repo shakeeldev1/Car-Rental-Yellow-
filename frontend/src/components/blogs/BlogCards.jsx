@@ -1,22 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import { useGetAllBlogsQuery } from "../../redux/slices/BlogSlice";
-// import Loader from "../../Loader";
 import { useGetAllBlogsQuery } from "../../redux/slices/BlogSlice";
 
-function BlogCards() {
+function BlogCards({ selectedCategory }) {
   const navigate = useNavigate();
   const { data, isLoading, isError } = useGetAllBlogsQuery();
 
-  // if (isLoading) return <Loader />;
   if (isError) return <div className="text-center text-red-500">Eroare la încărcarea blogurilor.</div>;
 
   const blogPosts = data?.blogs || [];
+  
+  // Filter posts by selected category
+  const filteredPosts = selectedCategory === "All Categories" 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === selectedCategory);
 
   return (
     <div className="p-4">
       <div className="grid md:grid-cols-2 gap-6 hover:cursor-pointer">
-        {blogPosts.map((item) => (
+        {filteredPosts.map((item) => (
           <div
             key={item._id}
             className="flex flex-col gap-2"
