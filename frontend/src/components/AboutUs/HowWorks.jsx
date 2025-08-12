@@ -4,41 +4,58 @@ import { FaTaxi, FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
 const HowWorks = () => {
   const working = [
     {
-      icon: <FaTaxi className="border rounded-full group-hover:bg-[#FFEE02] w-[70px] h-[70px] p-3" />,
+      icon: <FaTaxi className="text-3xl" />,
       title: "Book in Just 2 Taps",
       description: "Easily book your taxi with just two taps using our user-friendly app.",
     },
     {
-      icon: <FaMapMarkerAlt className="border rounded-full group-hover:bg-[#FFEE02] w-[70px] h-[70px] p-3" />,
+      icon: <FaMapMarkerAlt className="text-3xl" />,
       title: "Track Your Driver",
       description: "Monitor your ride in real-time and get accurate arrival estimates.",
     },
     {
-      icon: <FaCheckCircle className="border rounded-full group-hover:bg-[#FFEE02] w-[70px] h-[70px] p-3" />,
+      icon: <FaCheckCircle className="text-3xl" />,
       title: "Pick & Arrive Safely",
       description: "Enjoy a safe and comfortable journey to your destination.",
     },
   ];
 
   return (
-    <div className="container mx-auto my-20 text-center">
-      <p className="uppercase">Order Taxi Online</p>
-      <h1 className="text-3xl md:text-5xl font-bold">How It Works</h1>
+    <div className="container mx-auto my-28 px-4">
+      <div className="text-center mb-16">
+        <p className="uppercase text-gray-600 tracking-wider text-sm mb-3">Order Taxi Online</p>
+        <h1 className="text-3xl md:text-5xl font-bold mb-4">How It Works</h1>
+        <div className="w-20 h-1 bg-[#FFEE02] mx-auto"></div>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {working.map((item, index) => (
-          <div key={index} className="mt-5 relative group">
-            <div
-              className="h-[230px] w-[300px] bg-[#FFF9B3]"
-              style={{ clipPath: "polygon(53% 0, 100% 0, 49% 100%, 0% 100%)" }}
+          <div 
+            key={index} 
+            className="group relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+          >
+            {/* Background shape with hover effect */}
+            <div 
+              className="absolute top-0 right-0 w-full h-full bg-[#FFED4D] opacity-20 group-hover:opacity-30"
+              style={{ clipPath: "polygon(100% 0, 100% 65%, 35% 100%, 0 100%, 0 0)" }}
             ></div>
-
-            <div className="absolute top-10 left-20 flex gap-2">
-              <div>{item.icon}</div>
-              <div>
-                <h1 className="font-bold text-xl md:text-2xl text-left">{item.title}</h1>
-                <p className="text-sm text-gray-600 text-left">{item.description}</p>
+            
+            {/* Number indicator */}
+            <div className="absolute top-4 left-4 text-4xl font-bold text-gray-500 opacity-80">
+              0{index + 1}
+            </div>
+            
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center text-center">
+              <div className="mb-6 w-20 h-20 rounded-full bg-[#FFEE02] flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+                {item.icon}
               </div>
+              <h3 className="text-xl font-bold mb-3 group-hover:text-[#FFEE02] transition-colors duration-300">
+                {item.title}
+              </h3>
+              <p className="text-gray-600">
+                {item.description}
+              </p>
             </div>
           </div>
         ))}
