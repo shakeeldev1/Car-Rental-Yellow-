@@ -69,9 +69,7 @@ const ContactForm = () => {
             Get <span className="text-[#FFEE02]"> in touch </span> with us
           </h1>
           <p className="text-gray-600 text-base my-6 leading-relaxed">
-            Lorem ipsum is simply free text available dolor sit amet consectetur
-            notted adipisicing elit sed do eiusmod tempor incididunt simply dolore
-            magna.
+            AIS provides smart automation, real-time analytics, and seamless data integration. Contact us for customized AI-driven business solutions and expert support.
           </p>
 
           {/* Contact Info */}

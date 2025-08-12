@@ -25,8 +25,7 @@ const Footer = () => {
         {/* Description */}
         <div className="w-full md:w-[30%] text-center md:text-left">
           <p className="text-white">
-            Logo Authoritatively simplify open-source resources via backend
-            visualize business e-markets before parallel.
+            AIS simplifies open-source data, visualizes backend processes, and optimizes e-markets with parallel processing.
           </p>
         </div>
 
@@ -40,7 +39,7 @@ const Footer = () => {
             <HiOutlineDevicePhoneMobile className="text-4xl me-2" />
             <div>
               <p className="uppercase text-sm md:font-semibold">
-                Call for Taxi
+                Call for BooKing
               </p>
               <p className="text-md md:text-xl lg:text-2xl">5267-214-392</p>
             </div>

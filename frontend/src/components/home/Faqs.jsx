@@ -99,7 +99,7 @@ const Faqs = () => {
 
         <div className="relative h-[450px] w-[300px]">
           <img
-            src={faq1}
+            src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODR8fGNhcnxlbnwwfHwwfHx8MA%3D%3D"
             alt="Faq"
             className="w-fit h-full object-cover"
             style={{

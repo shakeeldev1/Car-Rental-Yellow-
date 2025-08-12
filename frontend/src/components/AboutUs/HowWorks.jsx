@@ -6,17 +6,17 @@ const HowWorks = () => {
     {
       icon: <FaTaxi className="text-3xl" />,
       title: "Book in Just 2 Taps",
-      description: "Easily book your taxi with just two taps using our user-friendly app.",
+      description: "Book instantly with AIS—just 2 taps for seamless, fast, and smart reservations anytime, anywhere",
     },
     {
       icon: <FaMapMarkerAlt className="text-3xl" />,
       title: "Track Your Driver",
-      description: "Monitor your ride in real-time and get accurate arrival estimates.",
+      description: "Track your driver in real-time with AIS for accurate ETAs and seamless journeys.",
     },
     {
       icon: <FaCheckCircle className="text-3xl" />,
       title: "Pick & Arrive Safely",
-      description: "Enjoy a safe and comfortable journey to your destination.",
+      description: "Ensure safe pickups & arrivals with AIS-powered real-time tracking and verified drivers",
     },
   ];
 
