@@ -27,64 +27,77 @@ const driversData = [
 
 const Drivers = () => {
   return (
-    <div className="container mx-auto px-4 md:px-0">
-      <p className="uppercase text-center text-sm md:text-base">
-        Our Expert Drivers
-      </p>
-      <h1 className="text-2xl md:text-5xl font-bold text-center">
-        Meet Our Drivers
-      </h1>
+    <div className="container mx-auto px-4 md:px-0 py-12">
+      <div className="text-center mb-16">
+        <p className="uppercase tracking-wider text-sm md:text-base text-[#FFEE02] font-medium mb-2">
+          Our Expert Drivers
+        </p>
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 relative inline-block">
+          Meet Our Drivers
+        </h1>
+        <p className="text-gray-600 max-w-2xl mx-auto mt-4">
+          Professional drivers with years of experience to ensure your journey is safe and comfortable.
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 mt-9 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
         {driversData.map((driver, index) => (
           <div
             key={index}
-            className="flex flex-col min-w-[300px] mx-auto rounded border relative my-3 cursor-pointer group hover:shadow-2xl transition-all duration-500 overflow-hidden"
+            className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2"
           >
-            {/* Driver Info */}
-            <div className="px-4 pt-4 md:px-3">
-              <h1 className="text-lg md:text-2xl font-semibold text-left ">
-                {driver.name}
-              </h1>
-              <p className="text-gray-600 text-left">
-                {driver.role}
-              </p>
+            {/* Background Shape with Animation */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-[#FFEE02] opacity-20 group-hover:opacity-30 transition-all duration-700 transform rotate-45 scale-0 group-hover:scale-100 origin-center"></div>
             </div>
 
-            {/* Phone Section */}
-            <div className="flex flex-col md:flex-row mt-3 mb-10 items-center md:items-start gap-2 justify-center md:justify-end px-3">
-              <IoPhonePortraitOutline className="bg-[#FFEE02] w-[40px] h-[40px] p-2 rounded-full" />
-              <p className="hover:underline cursor-pointer font-semibold text-gray-600 text-center md:text-left">
-                {driver.phone}
-              </p>
-            </div>
+            {/* Content Container */}
+            <div className="relative z-10 p-6 h-full flex flex-col">
+              {/* Driver Info */}
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 group-hover:text-[#FFEE02] transition-colors duration-300">
+                  {driver.name}
+                </h2>
+                <p className="text-gray-600 group-hover:text-gray-500 transition-colors duration-300">
+                  {driver.role}
+                </p>
+              </div>
 
-            {/* Shape Background */}
-            <div
-              className="w-full h-[200px] md:w-[300px] md:h-[280px] bg-[#FFEE02] group-hover:bg-[#000] transition-all duration-1000 z-0 mx-auto md:ml-[20px]"
-              style={{
-                clipPath: "polygon(28% 34%, 100% 30%, 65% 100%, 0% 100%)",
-              }}
-            ></div>
+              {/* Phone Section */}
+              <div className="mt-auto mb-8 flex items-center gap-3">
+                <div className="p-2 bg-[#FFEE02] rounded-full transform group-hover:rotate-12 transition-transform duration-500">
+                  <IoPhonePortraitOutline className="w-5 h-5 text-gray-900" />
+                </div>
+                <a 
+                  href={`tel:${driver.phone.replace(/\D/g, '')}`}
+                  className="font-medium text-gray-700 group-hover:text-gary-500 transition-colors duration-300 hover:underline"
+                >
+                  {driver.phone}
+                </a>
+              </div>
 
-            {/* Driver Image */}
-            <div className="absolute bottom-10 w-full flex justify-center md:justify-start">
-              <img
-                src={driver.image}
-                alt={driver.name}
-                className="object-cover transition-transform duration-1000 transform group-hover:scale-110 max-w-[90%] md:max-w-none"
-                style={{
-                  clipPath: "polygon(41% 0, 100% 0, 62% 100%, 0% 100%)",
-                  transformOrigin: "center",
-                }}
-              />
-            </div>
+              {/* Driver Image */}
+              <div className="relative h-64 w-full overflow-hidden rounded-lg">
+                <img
+                  src={driver.image}
+                  alt={driver.name}
+                  className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
 
-            {/* Social Icons */}
-            <div className="absolute bottom-0 w-full flex justify-center items-center mb-4 gap-4">
-              <FaLinkedinIn className="shadow-lg p-2 w-[32px] md:w-[36px] h-[32px] md:h-[36px] bg-white text-gray-800 hover:bg-[#FFEE02] hover:text-black hover:border hover:border-white rounded-full transition-all duration-500 transform hover:scale-110" />
-              <FaFacebook className="shadow-lg p-2 w-[32px] md:w-[36px] h-[32px] md:h-[36px] bg-white text-gray-800 hover:bg-[#FFEE02] hover:text-black hover:border hover:border-white rounded-full transition-all duration-500 transform hover:scale-110" />
-              <FaTwitter className="shadow-lg p-2 w-[32px] md:w-[36px] h-[32px] md:h-[36px] bg-white text-gray-800 hover:bg-[#FFEE02] hover:text-black hover:border hover:border-white rounded-full transition-all duration-500 transform hover:scale-110" />
+              {/* Social Icons */}
+              <div className="flex justify-center gap-4 mt-6 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                <a href="#" className="p-2 bg-white rounded-full shadow-md hover:bg-[#FFEE02] hover:text-gray-900 transition-colors duration-300 transform hover:scale-110">
+                  <FaLinkedinIn className="w-4 h-4" />
+                </a>
+                <a href="#" className="p-2 bg-white rounded-full shadow-md hover:bg-[#FFEE02] hover:text-gray-900 transition-colors duration-300 transform hover:scale-110">
+                  <FaFacebook className="w-4 h-4" />
+                </a>
+                <a href="#" className="p-2 bg-white rounded-full shadow-md hover:bg-[#FFEE02] hover:text-gray-900 transition-colors duration-300 transform hover:scale-110">
+                  <FaTwitter className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         ))}
