@@ -8,19 +8,19 @@ const Services = () => {
     {
       title: "Business Transfer",
       description:
-        "Lorem ipsum dolor sit amet, consectne auctor aliquet Aenean solli lorem tim bibendum auctor.",
+        "Secure and efficient business transfers with AIS automation, ensuring smooth ownership transitions and compliance.",
       image: service5,
     },
     {
       title: "Online Booking",
       description:
-        "Lorem ipsum dolor sit amet, consectne auctor aliquet Aenean solli lorem tim bibendum auctor.",
+        "AIS-powered online booking ensures fast, secure, and automated reservations for seamless transactions.",
       image: service6,
     },
     {
       title: "City Transport",
       description:
-        "Lorem ipsum dolor sit amet, consectne auctor aliquet Aenean solli lorem tim bibendum auctor.",
+        "Optimize city transport with AIS-driven smart routing, real-time tracking, and efficient fleet management.",
       image: service7,
     },
   ];

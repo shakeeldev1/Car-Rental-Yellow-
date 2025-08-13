@@ -13,7 +13,7 @@ const Button = ({
         onClick={onClick}
         className="relative overflow-hidden bg-[#FFEE02] w-[170px] px-6 py-3 cursor-pointer font-semibold text-black transition-all duration-500 group"
         style={{ clipPath: "polygon(100% 0, 85% 100%, 0 100%, 0 0)" }}
-      >
+      >z
         <div
           className={`absolute top-0 right-2 h-[100%] w-[50px] bg-${cutHover} z-20`}
           style={{ clipPath: "polygon(100% 0, 45% 100%, 25% 100%, 78% 0)" }}

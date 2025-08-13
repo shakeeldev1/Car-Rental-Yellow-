@@ -21,15 +21,12 @@ const Header = () => {
         
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight 
         transform transition-all duration-500 hover:scale-105">
-          Reserve Your Taxi <br/>From Any Location
+          Reserve Your Car <br/>From Any Location
         </h1>
 
         <p className="mt-4 text-sm sm:text-base md:text-lg max-w-2xl 
         bg-black bg-opacity-20 p-3 rounded-lg backdrop-blur-sm">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut porro
-          fugit error assumenda quasi dolor placeat nemo et expedita nostrum,
-          suscipit neque harum iure unde voluptatum nisi aspernatur alias
-          perferendis!
+          AIS enables seamless car reservations from any location, offering real-time availability, automated booking, and GPS tracking. Enhance customer convenience with instant confirmations and mobile access for on-the-go management.
         </p>
 
         <div className="mt-8 flex sm:justify-start justify-center 
