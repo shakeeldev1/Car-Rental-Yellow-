@@ -58,7 +58,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-4">
           {userProfile ? (
             <>
-              <Button text="Book a Taxi" />
+              <Button text="Book a Car" />
               <div className="relative">
                 <div
                   className="w-10 h-10 flex items-center justify-center bg-[#FFEE02] text-black font-bold rounded-full cursor-pointer overflow-hidden border-2 border-white hover:opacity-90 transition"
@@ -214,7 +214,7 @@ const Navbar = () => {
                   Dashboard
                 </Link>
               )}
-              <Button text="Book a Taxi" />
+              <Button text="Book a Car" />
               <button
                 className="text-left text-red-600 font-semibold mt-4"
                 onClick={handleLogout}

@@ -56,7 +56,7 @@ const TrustedCabService = () => {
 
         {/* Button */}
         <div className="flex justify-center mt-10 md:justify-start">
-          <Button text="Book a Taxi" bgHover="black" textHover="white" cutHover="white"/>
+          <Button text="Book a Car" bgHover="black" textHover="white" cutHover="white"/>
         </div>
       </div>
     </div>
