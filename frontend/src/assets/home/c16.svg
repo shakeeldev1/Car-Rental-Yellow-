@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 50 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e70013;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <circle class="cls-2" cx="25" cy="25" r="25"/>
+    </clipPath>
+  </defs>
+  <g class="cls-4">
+    <g>
+      <rect class="cls-1" x="-16.069" y="-2.311" width="82.138" height="54.622"/>
+      <g>
+        <circle class="cls-3" cx="25" cy="25" r="13.663"/>
+        <path class="cls-1" d="M27.744,33.225c-4.542,0-8.225-3.682-8.225-8.225s3.682-8.225,8.225-8.225c2.426,0,4.6,1.057,6.105,2.728-1.827-2.893-5.05-4.816-8.724-4.816-5.695,0-10.313,4.617-10.313,10.313s4.617,10.313,10.313,10.313c3.674,0,6.897-1.923,8.724-4.816-1.505,1.671-3.679,2.728-6.106,2.728Z"/>
+        <polygon class="cls-1" points="25.974 19.193 25.995 23.735 21.645 25.158 26.014 26.56 25.999 31.111 28.662 27.415 32.994 28.824 30.301 25.12 32.996 21.465 28.663 22.882 25.974 19.193"/>
+      </g>
+    </g>
+  </g>
+</svg>

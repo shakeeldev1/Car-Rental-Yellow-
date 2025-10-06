@@ -32,11 +32,13 @@ import ResetPassword from "./pages/ResetPassword";
 import Blogs from "./pages/Blogs";
 import BlogDetails from "./components/blogs/BlogDetails";
 import AdminBlogs from "./pages/dashboard/AdminBlogs";
+import HeaderMail from "./pages/HeaderMail";
 
 const MainLayout = () => {
   return (
     <>
       <ScrollToTop />
+      <HeaderMail/>
       <Navbar />
       <Outlet />
       <Footer />

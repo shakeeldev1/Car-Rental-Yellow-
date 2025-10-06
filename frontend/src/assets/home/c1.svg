@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Elipse_79" data-name="Elipse 79" cx="25" cy="25" r="25" transform="translate(9726.667 -344)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="ico-es" transform="translate(-9726.667 344)" clip-path="url(#clip-path)">
+    <rect id="Rectángulo_1851" data-name="Rectángulo 1851" width="50" height="11.29" transform="translate(9726.667 -344)" fill="#d50000"/>
+    <rect id="Rectángulo_1852" data-name="Rectángulo 1852" width="50" height="12.903" transform="translate(9726.667 -306.903)" fill="#d50000"/>
+    <rect id="Rectángulo_1853" data-name="Rectángulo 1853" width="50" height="25.806" transform="translate(9726.667 -332.71)" fill="#ffc400"/>
+  </g>
+</svg>

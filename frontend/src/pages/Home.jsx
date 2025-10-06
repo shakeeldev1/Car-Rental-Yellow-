@@ -6,15 +6,17 @@ import Services from "../components/home/Services";
 import Faqs from "../components/home/Faqs";
 import Testimonials from "../components/home/Testimonials";
 import CarRentalStats from "../components/home/CarRentalStats";
-import Working from "../components/home/Working";
-import WhyUs from "../components/home/WhyUs";
-import Download from "../components/home/Download";
+import PopularDestination from "../components/home/PopularDestination";
+// import Working from "../components/home/Working";
+// import WhyUs from "../components/home/WhyUs";
+// import Download from "../components/home/Download";
 
 const Home = () => {
   return (
     <div>
       <Header />
       <TrustedCabService />
+      <PopularDestination/>
       <CarRentalStats />
       <Services />
       <Testimonials />

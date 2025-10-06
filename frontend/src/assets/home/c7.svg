@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 50 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #e50017;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #00973d;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <circle class="cls-1" cx="25" cy="25" r="25"/>
+    </clipPath>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Capa_1">
+      <g class="cls-5">
+        <g>
+          <rect class="cls-3" x="-.49" y="0" width="74.995" height="50"/>
+          <rect id="green" class="cls-4" x="-.49" y="0" width="74.995" height="16.668"/>
+          <rect x="-.49" y="33.335" width="74.995" height="16.665"/>
+          <rect id="red" class="cls-2" x="-.49" y="0" width="18.75" height="50"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
