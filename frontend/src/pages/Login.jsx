@@ -144,7 +144,7 @@ export default function LoginPage() {
               data-aos-delay="400"
               className={`
                 relative w-full mt-4 overflow-hidden group
-                bg-gradient-to-r from-[#b6aa03] to-[#c8bc1a]
+                bg-[#FFEE02]
                 text-white p-4 cursor-pointer rounded-xl font-semibold text-lg
                 transition-all duration-300 transform hover:-translate-y-0.5
                 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:transform-none disabled:hover:shadow-lg

@@ -106,7 +106,7 @@ export default function RegisterPage() {
 
           <div className="text-center mb-8">
             <h2
-              className="text-4xl font-bold text-gray-800 mb-3 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent"
+              className="text-4xl font-bold text-gary-800 mb-3 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent"
               data-aos="fade-down"
             >
               Create Account
@@ -249,7 +249,7 @@ export default function RegisterPage() {
               type="submit"
               data-aos="zoom-in"
               data-aos-delay="600"
-              className={`relative w-full mt-3 overflow-hidden group bg-gradient-to-r from-[#b6aa03] to-[#9c9202] text-white p-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
+              className={`relative w-full mt-3 overflow-hidden group bg-[#FFEE02]  text-white p-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                 isLoading ? "cursor-not-allowed opacity-70" : ""
               }`}
               disabled={isLoading}
