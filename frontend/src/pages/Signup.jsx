@@ -109,7 +109,7 @@ export default function RegisterPage() {
               className="text-4xl font-bold text-gary-800 mb-3 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent"
               data-aos="fade-down"
             >
-              Create Account
+              Create <span className="text-[#FFEE02]">Account</span> 
             </h2>
           </div>
 
@@ -122,7 +122,7 @@ export default function RegisterPage() {
                 <input
                   type="text"
                   name="name"
-                  className="w-full border border-gray-200 p-4 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03] focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
+                  className="w-full border border-gray-200 p-3 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03] focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
                   placeholder="Enter your full name"
                   value={formData.name}
                   onChange={handleChange}
@@ -137,7 +137,7 @@ export default function RegisterPage() {
                 <input
                   type="email"
                   name="email"
-                  className="w-full border border-gray-200 p-4 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03] focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
+                  className="w-full border border-gray-200 p-3 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03] focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
                   placeholder="Enter your email"
                   value={formData.email}
                   onChange={handleChange}
@@ -154,7 +154,7 @@ export default function RegisterPage() {
                   name="phone"
                   inputMode="numeric"
                   pattern="[0-9]*"
-                  className="w-full border border-gray-200 p-4 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03] focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
+                  className="w-full border border-gray-200 p-3 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03] focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
                   placeholder="Enter your mobile number"
                   value={formData.phone}
                   onChange={(e) => {
@@ -173,7 +173,7 @@ export default function RegisterPage() {
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    className="w-full border border-gray-200 p-4 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03] focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400 pr-12"
+                    className="w-full border border-gray-200 p-3 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#b6aa03] focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400 pr-12"
                     placeholder="Enter your password"
                     value={formData.password}
                     onChange={handleChange}

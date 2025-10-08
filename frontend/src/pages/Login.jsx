@@ -61,13 +61,13 @@ export default function LoginPage() {
         >
           <div className="text-center mb-8" data-aos="fade-down">
             <h2 className="text-4xl font-bold text-gray-800 mb-3 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-              Welcome Back
+              Welcome <span className="text-[#FFEE02]">Back</span>
             </h2>
             <p className="text-gray-600 text-lg">
               Start your journey with us. Don't have an account?{" "}
               <Link
                 to="/sign-up"
-                className="text-[#b6aa03] font-semibold hover:text-[#9a9002] transition-colors duration-300 cursor-pointer underline decoration-2 decoration-[#b6aa03]"
+                className="text-[#b6aa03] font-semibold hover:text-[#FFEE02] transition-colors duration-300 cursor-pointer underline decoration-2 decoration-[#b6aa03] hover:decoration-[#FFEE02]"
               >
                 Sign up
               </Link>
@@ -83,7 +83,7 @@ export default function LoginPage() {
                 <input
                   type="email"
                   name="email"
-                  className="w-full border-1 border-gray-200 bg-gray-50 p-4 pl-12 rounded-xl text-gray-800 focus:outline-none focus:border-[#b6aa03] focus:bg-white transition-all duration-300 shadow-sm hover:border-gray-300"
+                  className="w-full border-1 border-gray-200 bg-gray-50 p-3 pl-12 rounded-xl text-gray-800 focus:outline-none focus:border-[#b6aa03] focus:bg-white transition-all duration-300 shadow-sm hover:border-gray-300"
                   placeholder="Enter your email"
                   value={formData.email}
                   onChange={handleChange}
@@ -100,7 +100,7 @@ export default function LoginPage() {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  className="w-full border-1 border-gray-200 bg-gray-50 p-4 pl-12 pr-12 rounded-xl text-gray-800 focus:outline-none focus:border-[#b6aa03] focus:bg-white transition-all duration-300 shadow-sm hover:border-gray-300"
+                  className="w-full border-1 border-gray-200 bg-gray-50 p-3 pl-12 pr-12 rounded-xl text-gray-800 focus:outline-none focus:border-[#b6aa03] focus:bg-white transition-all duration-300 shadow-sm hover:border-gray-300"
                   placeholder="Enter your password"
                   value={formData.password}
                   onChange={handleChange}
@@ -130,7 +130,7 @@ export default function LoginPage() {
               </div>
               <Link
                 to="/forgot-password"
-                className="text-[#b6aa03] font-semibold cursor-pointer text-sm hover:text-[#9a9002] transition-colors duration-300"
+                className="text-[#b6aa03] font-semibold cursor-pointer text-sm hover:text-[#FFEE02] transition-colors duration-300"
               >
                 Forgot password?
               </Link>
