@@ -1,112 +1,119 @@
 import React from "react";
-import { FiPhoneMissed } from "react-icons/fi";
-import { MdEmail } from "react-icons/md";
-import { BsCursor } from "react-icons/bs";
+import { FiPhone } from "react-icons/fi";
+import { MdEmail, MdLocationOn } from "react-icons/md";
+import { motion } from "framer-motion";
 import Button from "../Button";
 
 const ContactForm = () => {
   return (
-    <div className="container mx-auto my-16 px-4">
-      <div className="flex flex-col md:flex-row gap-12">
-        {/* Left Section (Form) */}
-        <div className="w-full md:w-[48%]">
-          <p className="uppercase text-gray-800 tracking-wider text-sm mb-2">Send us email</p>
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-            Feel <span className="text-[#FFEE02]"> free to </span> write
-          </h1>
-          <form
-            type="submit"
-            className="my-5 flex flex-col flex-wrap md:flex-row gap-4"
+    <section className="bg-gradient-to-b from-gray-50 to-white py-24">
+      <div className="container mx-auto px-6 lg:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          
+          {/* Left Section - Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="bg-black text-white p-10 md:p-14 rounded-3xl relative overflow-hidden shadow-2xl"
           >
-            <div className="w-full flex flex-col md:flex-row gap-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter Name"
-                className="w-full md:w-[48%] p-4 bg-[#F4F5F8] rounded-lg outline-none focus:ring-2 focus:ring-[#FFEE02] transition-all duration-300 shadow-sm hover:shadow-md"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter Email"
-                className="w-full md:w-[48%] p-4 bg-[#F4F5F8] rounded-lg outline-none focus:ring-2 focus:ring-[#FFEE02] transition-all duration-300 shadow-sm hover:shadow-md"
-              />
-            </div>
-            <div className="w-full flex flex-col md:flex-row gap-4">
-              <input
-                type="text"
-                name="subject"
-                placeholder="Enter Subject"
-                className="w-full md:w-[48%] p-4 bg-[#F4F5F8] rounded-lg outline-none focus:ring-2 focus:ring-[#FFEE02] transition-all duration-300 shadow-sm hover:shadow-md"
-              />
-              <input
-                type="number"
-                name="phone"
-                placeholder="Enter Phone"
-                className="w-full md:w-[48%] p-4 bg-[#F4F5F8] rounded-lg outline-none focus:ring-2 focus:ring-[#FFEE02] transition-all duration-300 shadow-sm hover:shadow-md"
-              />
-            </div>
-            <textarea
-              name="message"
-              placeholder="Enter Message"
-              className="w-full min-h-[180px] p-4 bg-[#F4F5F8] rounded-lg outline-none focus:ring-2 focus:ring-[#FFEE02] transition-all duration-300 shadow-sm hover:shadow-md"
-            />
-            <div className="w-full mt-2">
-              <Button
-                text="Send Message"
-                bgHover="black"
-                textHover="white"
-                cutHover="white"
-              />
-            </div>
-          </form>
-        </div>
+            {/* Subtle background shapes */}
+            <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#FFEE02] opacity-10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-48 h-48 bg-white opacity-5 rounded-full blur-2xl"></div>
 
-        {/* Right Section (Contact Details) */}
-        <div className="w-full md:w-[48%]">
-          <p className="uppercase text-gray-800 tracking-wider text-sm mb-2">Need any help?</p>
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-            Get <span className="text-[#FFEE02]"> in touch </span> with us
-          </h1>
-          <p className="text-gray-600 text-base my-6 leading-relaxed">
-            AIS provides smart automation, real-time analytics, and seamless data integration. Contact us for customized AI-driven business solutions and expert support.
-          </p>
+            <div className="relative z-10">
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
+                Let’s Connect
+              </h2>
+              <p className="text-gray-400 text-lg leading-relaxed mb-12">
+                We’d love to hear from you! Whether it’s a partnership, inquiry, or feedback — 
+                our team is always ready to assist you.
+              </p>
 
-          {/* Contact Info */}
-          <div className="flex flex-col gap-6 mt-8">
-            <ContactInfo
-              icon={<FiPhoneMissed className="text-2xl" />}
-              title="Have any question?"
-              text="Free +92 (020)-9850"
-            />
-            <ContactInfo
-              icon={<MdEmail className="text-2xl" />}
-              title="Write email"
-              text="needhelp@company.com"
-            />
-            <ContactInfo
-              icon={<BsCursor className="text-2xl" />}
-              title="Visit anytime"
-              text="66 Brooklyn Golden Street, New York"
-            />
-          </div>
+              <div className="space-y-8">
+                <ContactItem icon={<MdEmail />} label="Email" text="support@ais-taxi.com" />
+                <ContactItem icon={<FiPhone />} label="Phone" text="+1 (995) 544-2318" />
+                <ContactItem icon={<MdLocationOn />} label="Location" text="2739 Saint Augustine Trl, Marietta, GA, USA" />
+                <ContactItem icon={<span className="text-2xl">🕒</span>} label="Hours" text="24/7 Available Service" />
+              </div>
+
+              <div className="mt-14 pt-8 border-t border-gray-700">
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Need instant assistance? Reach out to our live chat or call us directly.  
+                  We’re committed to providing fast and reliable support every time.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Section - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="bg-white p-10 md:p-14 rounded-3xl shadow-xl border border-gray-100"
+          >
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+              Send Us a Message
+            </h1>
+            <p className="text-gray-600 text-lg mb-10 leading-relaxed">
+              Fill out the form below, and we’ll get back to you shortly.  
+              Your satisfaction is our top priority.
+            </p>
+
+            <form className="space-y-8">
+              <InputField type="text" placeholder="Your Name" />
+              <InputField type="email" placeholder="Your Email" />
+              <TextArea placeholder="Your Message" />
+
+              <div className="pt-4">
+                <Button
+                  text="Submit Message"
+                  bgColor="black"
+                  textColor="white"
+                  hoverBg="[#FFEE02]"
+                  hoverText="black"
+                  className="w-full md:w-auto px-12 py-4 text-lg font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300"
+                />
+              </div>
+            </form>
+          </motion.div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-// Contact Info Component
-const ContactInfo = ({ icon, title, text }) => (
-  <div className="flex gap-5 cursor-default items-center group">
-    <div className="bg-[#FFEE02] w-[70px] h-[70px] rounded-lg p-4 flex items-center justify-center text-xl transition-all duration-300 group-hover:bg-black group-hover:text-white group-hover:scale-105 shadow-md">
+/* ---------------- COMPONENTS ---------------- */
+const InputField = ({ type, placeholder }) => (
+  <div className="relative">
+    <input
+      type={type}
+      placeholder={placeholder}
+      className="w-full px-4 py-4 text-lg text-gray-900 bg-transparent border-b-2 border-gray-300 focus:border-[#FFEE02] outline-none transition-all duration-300 placeholder-gray-500"
+    />
+  </div>
+);
+
+const TextArea = ({ placeholder }) => (
+  <div className="relative">
+    <textarea
+      rows="4"
+      placeholder={placeholder}
+      className="w-full px-4 py-4 text-lg text-gray-900 bg-transparent border-b-2 border-gray-300 focus:border-[#FFEE02] outline-none transition-all duration-300 placeholder-gray-500 resize-none"
+    />
+  </div>
+);
+
+const ContactItem = ({ icon, label, text }) => (
+  <div className="flex items-start gap-5 group cursor-pointer transition-all duration-300">
+    <div className="bg-[#FFEE02] text-gray-900 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
       {icon}
     </div>
     <div>
-      <h1 className="font-bold text-xl transition-colors duration-300 group-hover:text-[#FFEE02]">
-        {title}
-      </h1>
-      <p className="text-gray-600 transition-colors duration-300 group-hover:text-black mt-1">
+      <p className="text-gray-400 text-sm uppercase tracking-wide">{label}</p>
+      <p className="text-white text-lg font-medium group-hover:text-[#FFEE02] transition-colors duration-300">
         {text}
       </p>
     </div>

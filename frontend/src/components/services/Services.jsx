@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MdMenuOpen, MdOutlineElectricBike } from "react-icons/md";
-import { FaCar, FaTaxi, FaSearch, FaUser, FaCarSide, FaSnowflake, FaDoorOpen, FaStar } from "react-icons/fa";
+import { FaCar, FaTaxi, FaSearch, FaUser, FaCarSide, FaSnowflake, FaDoorOpen, FaStar, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useGetAllServicesQuery } from "../../redux/slices/ServiceApi";
 
@@ -16,7 +16,7 @@ const OurServices = () => {
       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#FFEE02]"></div>
     </div>
   );
-  
+
   if (error) return (
     <div className="text-center py-10">
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md mx-auto">
@@ -26,7 +26,7 @@ const OurServices = () => {
   );
 
   // Get unique categories from services data
-  const uniqueCategories = [...new Set(services.map(service => 
+  const uniqueCategories = [...new Set(services.map(service =>
     service.serviceCategory ? service.serviceCategory.toLowerCase() : 'standard'
   ))];
 
@@ -89,11 +89,10 @@ const OurServices = () => {
             {categories.map(({ name, icon }) => (
               <button
                 key={name}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full shadow-sm cursor-pointer transition-all duration-200 ${
-                  selectedCategory.toLowerCase() === name.toLowerCase() 
-                    ? "bg-[#FFEE02] text-gray-900 font-medium shadow-md" 
-                    : "bg-white text-gray-700 hover:bg-gray-100"
-                }`}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full shadow-sm cursor-pointer transition-all duration-200 ${selectedCategory.toLowerCase() === name.toLowerCase()
+                  ? "bg-[#FFEE02] text-gray-900 font-medium shadow-md"
+                  : "bg-white text-gray-700 hover:bg-gray-100"
+                  }`}
                 onClick={() => setSelectedCategory(name)}
               >
                 <span className="text-gray-700">{icon}</span>
@@ -107,76 +106,86 @@ const OurServices = () => {
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto">
         {filteredDeals.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredDeals.map((service) => (
               <div
                 key={service._id}
-                className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl"
+                className="group bg-white rounded-2xl sm:flex shadow-md overflow-hidden transition-all duration-500 hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:-translate-y-2 relative"
               >
                 {/* Service Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-full sm:w-[40%] w-full overflow-hidden">
                   <img
-                    src={service.servicePic || "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"}
+                    src={
+                      service.servicePic ||
+                      "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    }
                     alt={service.serviceName}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-3 right-3 bg-black bg-opacity-70 text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center">
-                    <FaStar className="text-yellow-400 mr-1" />
+                  <div className="absolute top-3 right-3 bg-black bg-opacity-70 text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center shadow-md">
+                    <FaStar className="text-[#FFEE02] mr-1" />
                     4.8
                   </div>
+
+                  {/* Overlay gradient on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
 
                 {/* Service Details */}
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <h2 className="text-xl font-bold text-gray-900">{service.serviceName}</h2>
-                    <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
-                      {service.serviceCategory || "Standard"}
-                    </span>
-                  </div>
+                <div className="p-6 sm:w-[60%] w-full flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-3">
+                      <h2 className="text-xl font-bold text-gray-900 group-hover:text-black transition-colors duration-300">
+                        {service.serviceName}
+                      </h2>
+                      <span className="bg-[#FFEE02]/20 text-black text-xs font-semibold px-2.5 py-0.5 rounded uppercase">
+                        {service.serviceCategory || "Standard"}
+                      </span>
+                    </div>
 
-                  {/* Features Grid */}
-                  <div className="grid grid-cols-2 gap-3 my-4">
-                    <div className="flex items-center text-gray-700">
-                      <FaUser className="w-4 h-4 mr-2 text-gray-500" />
-                      <span className="text-sm">{service.passengers || "4"} seats</span>
-                    </div>
-                    <div className="flex items-center text-gray-700">
-                      <FaCarSide className="w-4 h-4 mr-2 text-gray-500" />
-                      <span className="text-sm">Automatic</span>
-                    </div>
-                    <div className="flex items-center text-gray-700">
-                      <FaSnowflake className="w-4 h-4 mr-2 text-gray-500" />
-                      <span className="text-sm">A/C</span>
-                    </div>
-                    <div className="flex items-center text-gray-700">
-                      <FaDoorOpen className="w-4 h-4 mr-2 text-gray-500" />
-                      <span className="text-sm">{service.doors || "4"} doors</span>
+                    {/* Features Grid */}
+                    <div className="grid grid-cols-2 gap-3 my-4 text-gray-700">
+                      <div className="flex items-center">
+                        <FaUser className="w-4 h-4 mr-2 text-gray-500" />
+                        <span className="text-sm">{service.passengers || "4"} seats</span>
+                      </div>
+                      <div className="flex items-center">
+                        <FaCarSide className="w-4 h-4 mr-2 text-gray-500" />
+                        <span className="text-sm">Automatic</span>
+                      </div>
+                      <div className="flex items-center">
+                        <FaSnowflake className="w-4 h-4 mr-2 text-gray-500" />
+                        <span className="text-sm">A/C</span>
+                      </div>
+                      <div className="flex items-center">
+                        <FaDoorOpen className="w-4 h-4 mr-2 text-gray-500" />
+                        <span className="text-sm">{service.doors || "4"} doors</span>
+                      </div>
                     </div>
                   </div>
 
                   {/* Price and CTA */}
-                  <div className="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between">
+                  <div className="mt-6 w-full pt-4 border-t border-gray-200 flex flex-wrap gap-2 items-center justify-between">
                     <div>
                       <p className="text-xs text-gray-500">STARTING FROM</p>
-                      <p className="text-2xl font-bold text-gray-900">${service.price}<span className="text-sm font-normal text-gray-500">/km</span></p>
+                      <p className="text-2xl font-bold text-gray-900">
+                        ${service.price}
+                        <span className="text-sm font-normal text-gray-500">/km</span>
+                      </p>
                     </div>
                     <Link
                       to={`/booking/${service._id}`}
                       state={{ service }}
-                      className="bg-[#FFEE02] hover:bg-[#e6d600] text-gray-900 font-medium py-2 px-5 rounded-lg transition-colors duration-200 flex items-center"
+                      className="bg-[#FFEE02] hover:bg-black hover:text-[#FFEE02] text-gray-900 font-semibold py-2 px-5 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg"
                     >
                       Book Now
-                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                      </svg>
+                        <FaArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"/>
                     </Link>
                   </div>
                 </div>
               </div>
             ))}
-          </div>
-        ) : (
+          </div>) : (
           <div className="text-center py-16 bg-white rounded-xl shadow-sm">
             <div className="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
               <FaSearch className="text-gray-400 text-3xl" />
@@ -185,7 +194,7 @@ const OurServices = () => {
             <p className="text-gray-500 max-w-md mx-auto">
               Try adjusting your search or filter to find what you're looking for.
             </p>
-            <button 
+            <button
               onClick={() => {
                 setSearchQuery("");
                 setSelectedCategory("All");
