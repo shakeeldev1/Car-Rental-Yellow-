@@ -16,7 +16,6 @@ const Testimonials = () => {
   const { data: reviewsResponse, isLoading, isError } = useGetReviewsQuery();
   const reviews = reviewsResponse?.reviews || [];
   const highRatedReviews = reviews.filter((review) => review.rating >= 4);
-
   const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -68,7 +67,7 @@ const Testimonials = () => {
         setFormReview={setFormReview}
       />
 
-      {(aboutTestimonials || homeTestimonials) && (
+      {highRatedReviews && (
         <div className="w-full max-w-5xl mx-auto shadow-md bg-gray-100 p-8 md:p-10 rounded-xl flex flex-col md:flex-row gap-8 items-center">
           {/* Heading */}
           <div
@@ -100,11 +99,9 @@ const Testimonials = () => {
                     className="w-full"
                   >
                     <div
-                      className={`${
-                        homeTestimonials ? "text-black bg-white" : "text-black bg-white"
-                      } w-full ${
-                        homeTestimonials ? "" : "sm:w-9/12"
-                      } mx-auto rounded-lg shadow-md p-6 space-y-4 min-h-[300px]]`}
+                      className={`${homeTestimonials ? "text-black bg-white" : "text-black bg-white"
+                        } w-full ${homeTestimonials ? "" : "sm:w-9/12"
+                        } mx-auto rounded-lg shadow-md p-6 space-y-4 min-h-[300px]]`}
                     >
                       <div className="flex justify-start gap-6 items-cente">
                         <h1 className="text-md sm:text-xl font-bold">

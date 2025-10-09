@@ -46,7 +46,7 @@ const TrustedCabService = () => {
 
         {/* Button */}
         <div className="flex justify-center  mt-10 mb-2">
-          <Button text="Book a Car" bgHover="black" textHover="white" cutHover="white"/>
+          <Button text="Book Service" bgHover="black" textHover="white" cutHover="white"/>
         </div>
       </div>
       <div className="w-full md:w-[30%] hidden sm:flex justify-center items-center">
