@@ -33,12 +33,13 @@ import Blogs from "./pages/Blogs";
 import BlogDetails from "./components/blogs/BlogDetails";
 import AdminBlogs from "./pages/dashboard/AdminBlogs";
 import HeaderMail from "./pages/HeaderMail";
+import OrderSummary from "./components/services/OrderSummary";
 
 const MainLayout = () => {
   return (
     <>
       <ScrollToTop />
-      <HeaderMail/>
+      <HeaderMail />
       <Navbar />
       <Outlet />
       <Footer />
@@ -70,6 +71,7 @@ const router = createBrowserRouter([
       { path: "/home", element: <Home /> },
       { path: "/services", element: <Services /> },
       { path: "/booking/:id", element: <Booking /> },
+      { path: "/order-summary", element: <OrderSummary /> },
       { path: "/contact", element: <ContactUs /> },
       { path: "/about-us", element: <About /> },
       { path: "/my-profile", element: <MyProfile /> },

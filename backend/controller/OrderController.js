@@ -9,20 +9,21 @@ export const createOrder = async (req, res) => {
     const { serviceId } = req.params;
     const customerId = req.user?.id;
 
-    if (!customerId) {
-      return res.status(404).json({ message: "User not found!" });
-    }
+    if (!customerId) return res.status(404).json({ message: "User not found!" });
 
     const service = await Service.findById(serviceId);
-    if (!service) {
-      return res.status(404).json({ message: "Service not available" });
-    }
+    if (!service) return res.status(404).json({ message: "Service not available" });
 
     const { data } = req.body;
-    const { from, to, distance, date, time } = data;
-    const { price } = req.body;
+    const { from, to, distance, totalPrice, date, time } = data;
 
-    const pickupDateTime = new Date(`${date}T${time}:00Z`);
+    const numericDistance = typeof distance === "string"
+      ? parseFloat(distance.replace(/[^\d.]/g, ""))
+      : Number(distance);
+
+    const numericPrice = Number(totalPrice);
+
+    const pickupDateTime = new Date(`${date}T${time}:00`);
     const pickupDateOnly = new Date(date);
 
     const newOrder = new Order({
@@ -30,8 +31,8 @@ export const createOrder = async (req, res) => {
       serviceId,
       pickupLocation: from,
       dropoffLocation: to,
-      distance: distance || 0,
-      price,
+      distance: numericDistance || 0,
+      price: numericPrice || 0,
       pickupTime: pickupDateTime,
       pickupDate: pickupDateOnly,
     });
@@ -40,18 +41,15 @@ export const createOrder = async (req, res) => {
 
     const populatedOrder = await Order.findById(newOrder._id).populate(
       "serviceId",
-      "serviceName serviceCategory"
+      "serviceName serviceCategory price"
     );
 
+    // Optional: send emails
     const adminEmail = process.env.ADMIN_EMAIL;
     const customerName = req.user?.name;
     const customerEmail = req.user?.email;
 
-    await sendOrderConfirmationEmail(
-      customerEmail,
-      customerName,
-      populatedOrder
-    );
+    await sendOrderConfirmationEmail(customerEmail, customerName, populatedOrder);
     await sendAdminOrderNotification(adminEmail, customerName, populatedOrder);
 
     return res.status(201).json({
