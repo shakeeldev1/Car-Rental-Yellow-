@@ -10,10 +10,10 @@ export default function HeaderMail() {
                 <div className='flex flex-wrap gap-2 text-black justify-center sm:justify-between items-center'>
                     <div className='sm:w-[40%] flex items-center flex-wrap gap-2 '>
                         <span><FaPhone fontSize={16} className='rotate-90' /></span>
-                        <span className=' sm:text-md'>5267-214-392</span>
+                        <span className=' sm:text-md'>+447463225777</span>
                         <span><HiOutlineDotsVertical fontSize={16} /></span>
                         <span><MdMarkEmailUnread fontSize={16} /></span>
-                        <span className=' sm:text-md'>needhelp@company.com</span>
+                        <span className=' sm:text-md'>info@linkwayrides.com</span>
                     </div>
                     <div className='sm:w-[20%]  flex items-center flex-wrap gap-2'>
                         {/* Facebook Button */}

@@ -3,24 +3,25 @@ import service5 from "../../assets/home/service5-1.jpg";
 import service6 from "../../assets/home/service5-2.jpg";
 import service7 from "../../assets/home/service5-3.jpg";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const services = [
     {
       title: "Coach & Minibus Hire",
-      subtitle:'Online Booking',
+      subtitle: 'Online Booking',
       description:
         "Comfortable and reliable coach and minibus hire across the UK, ideal for group tours, weddings, and long-distance travel.",
       image: service5,
     },
     {
-      title: "Airport & Corporate Transfers",subtitle:'Online Booking',
+      title: "Airport & Corporate Transfers", subtitle: 'Online Booking',
       description:
         "Professional transfer services to and from all major UK airports with punctual, comfortable, and stress-free travel.",
       image: service6,
     },
     {
-      title: "School & Event Transport",subtitle:'Online Booking',
+      title: "School & Event Transport", subtitle: 'Online Booking',
       description:
         "Safe and dependable transport solutions for schools, sports events, and private functions across the UK.",
       image: service7,
@@ -78,8 +79,9 @@ const Services = () => {
                 <p className="text-gray-600 text-sm text-start leading-relaxed mb-6">
                   {data.description}
                 </p>
-
-                <Button text="Learn More →" />
+                <Link to="/services">
+                  <Button text="Learn More →" />
+                </Link>
               </div>
             </div>
           ))}

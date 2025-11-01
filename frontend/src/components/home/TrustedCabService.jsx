@@ -8,6 +8,7 @@ import dot from "../../assets/home/dot.png";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaHeadset } from "react-icons/fa";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 
 const TrustedCabService = () => {
   return (
@@ -46,7 +47,9 @@ const TrustedCabService = () => {
 
         {/* Button */}
         <div className="flex justify-center  mt-10 mb-2">
+          <Link to="/services">
           <Button text="Book Service" bgHover="black" textHover="white" cutHover="white"/>
+          </Link>
         </div>
       </div>
       <div className="w-full md:w-[30%] hidden sm:flex justify-center items-center">

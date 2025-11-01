@@ -5,7 +5,7 @@ import { selectUserProfile, clearProfile } from "../redux/slices/UserSlice";
 import { useLogoutMutation } from "../redux/slices/UserApi";
 import { toast } from "react-toastify";
 import { IoMdMenu } from "react-icons/io";
-import logo from "../assets/logo-2.png";
+import logo from "../assets/companyLogo.png";
 import Button from "./Button";
 
 const Navbar = () => {
@@ -38,7 +38,7 @@ const Navbar = () => {
       <div className="container mx-auto py-4 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" onClick={() => setShowSidebar(false)}>
-          <img src={logo} alt="Company Logo" className="w-28" />
+          <img src={logo} alt="Company Logo" className="w-20" />
         </Link>
 
         {/* Desktop Navigation */}

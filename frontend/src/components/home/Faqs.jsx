@@ -53,7 +53,7 @@ const Faqs = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-white to-gray-50 py-10 px-4 overflow-x-hidden min-h-screen font-sans">
+    <div className="bg-gradient-to-br from-white to-gray-50 py-10 px-4 overflow-x-hidden font-sans">
       <script src="https://cdn.tailwindcss.com"></script>
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}

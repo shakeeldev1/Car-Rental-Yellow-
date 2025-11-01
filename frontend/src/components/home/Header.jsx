@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -90,10 +91,11 @@ const slides = [
         <p className="text-lg md:text-xl mb-8 leading-relaxed bg-black bg-opacity-30 p-4 rounded-xl backdrop-blur-sm border-l-4 border-yellow-500">
           {slides[currentSlide].description}
         </p>
-
+      <Link to="/services">
         <div className="flex gap-4">
           <Button text="Discover more" />
         </div>
+        </Link>
       </div>
 
       {/* Dots */}

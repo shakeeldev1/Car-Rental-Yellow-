@@ -1,4 +1,4 @@
-import logo from "../assets/logo-2.png";
+import logo from "../assets/companyLogo.png";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import appStore from "../assets/about/app-store.png";
 import googlePlay from "../assets/about/google-play.png";
@@ -13,12 +13,12 @@ const Footer = () => {
       {/* Top Section */}
       <div className="flex flex-col md:flex-row justify-between gap-6">
         {/* Logo */}
-        <div className="w-full md:w-[20%] flex justify-center md:justify-start">
+        <div className="w-full md:w-[20%] md:ms-7 flex justify-center md:justify-start">
           <img
             src={logo}
             alt="company logo"
             loading="lazy"
-            className="w-fit max-w-[170px]"
+            className="w-fit max-w-[100px]"
           />
         </div>
 
@@ -41,7 +41,7 @@ const Footer = () => {
               <p className="uppercase text-sm md:font-semibold">
                 Call for BooKing
               </p>
-              <p className="text-md md:text-xl lg:text-2xl">5267-214-392</p>
+              <p className="text-md md:text-xl lg:text-2xl">+447463225777</p>
             </div>
           </div>
         </div>
