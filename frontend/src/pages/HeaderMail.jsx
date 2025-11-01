@@ -1,16 +1,33 @@
 import React from 'react'
-import { FaPhone } from 'react-icons/fa'
+import { FaPhone, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa'
 import { MdMarkEmailUnread } from "react-icons/md";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import {FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn} from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 export default function HeaderMail() {
     return (
         <div className=' p-3 sm:py-2'>
             <div className=' mx-auto w-full sm:w-11/12'>
                 <div className='flex flex-wrap gap-2 text-black justify-center sm:justify-between items-center'>
                     <div className='sm:w-[40%] flex items-center flex-wrap gap-2 '>
-                        <span><FaPhone fontSize={16} className='rotate-90' /></span>
-                        <span className=' sm:text-md'>+447463225777</span>
+                        {/* <span><FaPhone fontSize={16} className='rotate-90' /></span> */}
+                        <div className="flex items-center justify-center  space-x-4">
+                            <p className="text-md">+44 161 706 1110</p>
+
+                            {/* Dial pad icon - opens phone dialer */}
+                            <a href="tel:+441617061110" className="text-black hover:scale-110 transition-transform">
+                                <FaPhoneAlt className="text-md" />
+                            </a>
+
+                            {/* WhatsApp icon - opens WhatsApp chat */}
+                            <a
+                                href="https://wa.me/441617061110"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-black hover:scale-110 transition-transform"
+                            >
+                                <FaWhatsapp className="text-md" />
+                            </a>
+                        </div>
                         <span><HiOutlineDotsVertical fontSize={16} /></span>
                         <span><MdMarkEmailUnread fontSize={16} /></span>
                         <span className=' sm:text-md'>info@linkwayrides.com</span>

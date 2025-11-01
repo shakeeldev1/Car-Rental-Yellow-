@@ -89,7 +89,7 @@ const PopularServices = () => {
                         <p className="text-xs text-gray-500 uppercase tracking-wider">Daily Rate</p>
                         <p className="text-2xl font-bold text-gray-900">
                           ${service.price}
-                          <span className="text-sm font-normal text-gray-500">/day</span>
+                          <span className="text-sm font-normal text-gray-500">/km</span>
                         </p>
                       </div>
                       <Link
